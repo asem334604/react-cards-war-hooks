@@ -1,34 +1,29 @@
-import React, {Component} from 'react';
 import './style.css';
 
-class Start extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            inputVal: ''
-        }
+import React, {useState} from 'react';
+
+const Start = (props) => {
+
+    const [inputVal, setInputVal] = useState('');
+
+    const setValue = (e) => {
+        setInputVal(e.target.value);
     }
 
-    setValue = (e) => {
-        this.setState({inputVal: e.target.value});
-        console.log(this.state.inputVal);
-    }
-
-    setUser = () => {
-        if (this.state.inputVal) {
-            this.props.setUser(this.state.inputVal)
+    const setUser = () => {
+        if (inputVal) {
+            props.setUser(inputVal)
         }
     }
-    render() {
-        return (
-            <div className={'container'}>
-                <h2 className={'start_header'}>Ready for WAR</h2>
-                <input className={'start_input'} placeholder={'Enter your name'}
-                       type="text" onChange={this.setValue}/>
-                <button className={'btn'} onClick={this.setUser}>start</button>
-            </div>
-        );
-    }
-}
+    return (
+        <div className={'container'}>
+            <h2 className={'start_header'}>Ready for WAR</h2>
+            <input className={'start_input'} placeholder={'Enter your name'}
+                   type="text" onChange={setValue}/>
+            <button className={'btn'} onClick={setUser}>start</button>
+        </div>
+    );
+};
 
 export default Start;
+
